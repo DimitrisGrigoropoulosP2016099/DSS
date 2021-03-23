@@ -25,6 +25,15 @@
         <li>A14 possible values: continuous</li>
         <li>A15 possible values: continuous</li>
       </ul>
+
+      <input type="file" id="file-selector" multiple />
+      <script>
+        const fileSelector = document.getElementById("file-selector");
+        fileSelector.addEventListener("change", (event) => {
+          const fileList = event.target.files;
+          console.log(fileList);
+        });
+      </script>
     </table>
   </body>
 </html>
