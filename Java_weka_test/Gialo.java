@@ -76,19 +76,25 @@ public class Gialo {
 		frame.getContentPane().add(create_file_button);
 
 		Button Load_File_button = new Button("Create File");
+		create_file_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+			}
+			
+		});
 		Load_File_button.setBounds(327, 393, 133, 50);
 		frame.getContentPane().add(Load_File_button);
 
 		JLabel Create_file_explain = new JLabel("Load your File ");
 		Create_file_explain.setVerticalAlignment(SwingConstants.BOTTOM);
 		Create_file_explain.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		Create_file_explain.setBounds(26, 322, 226, 50);
+		Create_file_explain.setBounds(28, 322, 226, 50);
 		frame.getContentPane().add(Create_file_explain);
 
-		JLabel Load_file_explain = new JLabel("Create your  own File");
+		JLabel Load_file_explain = new JLabel("Create your File");
 		Load_file_explain.setVerticalAlignment(SwingConstants.BOTTOM);
 		Load_file_explain.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		Load_file_explain.setBounds(327, 271, 171, 101);
+		Load_file_explain.setBounds(300, 271, 171, 101);
 		frame.getContentPane().add(Load_file_explain);
 	}
 }

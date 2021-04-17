@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import weka.classifiers.Classifier;
 import weka.core.Instances;
 
@@ -14,28 +16,28 @@ public class LoadData {
   }
 
   public static void loader(String path) throws Exception {
+    boolean FirstMessage = true;
 
     // DataSource source = new DataSource(path);
-    System.out.println("1");
     Instances data = new Instances(new BufferedReader(new FileReader(path)));
-    System.out.println("2");
-    System.out.println(data.numAttributes() + "og");
     data.setClassIndex(data.numAttributes() - 1);
-    System.out.println(data.numAttributes() + "aft");
-    System.out.println("3");
     Instances Copy_data = new Instances(data);
-    System.out.println("4");
-    Classifier j48modelo = (Classifier) weka.core.SerializationHelper.read("Java_weka_test/modelo1.model");
+    Classifier j48modelo = (Classifier) weka.core.SerializationHelper.read("Java_weka_test/model/modelo1.model");
     for (int i = 0; i < data.numInstances(); i++) {
-      System.out.println(i);
-      System.out.println("edw " + i);
       double cls = j48modelo.classifyInstance(data.instance(i));
-      System.out.println(cls);
-      System.out.println("ekei " + i);
+      if (FirstMessage == true) {
+        if (cls > 0) {
+          showMessageDialog(null, "congrats your prediction is positive");
+          FirstMessage = false;
+        } else {
+          showMessageDialog(null, "sorry your prediction is negative");
+          FirstMessage = false;
+        }
+      }
       Copy_data.instance(i).setClassValue(cls);
-      System.out.println("parapera" + i);
     }
-    BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/DIm/Documents/DSS_site/Java_weka_test/oss.arff"));
+
+    BufferedWriter writer = new BufferedWriter(new FileWriter("Java_weka_test/out/mytest.arff"));
     writer.write(Copy_data.toString());
     writer.newLine();
     writer.flush();
