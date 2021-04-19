@@ -5,13 +5,23 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Utils;
 
+
 /**
  * Generates a little ARFF file with different attribute types.
  *
  * @author FracPete
  */
 public class WriteFile {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
+    try {
+      writerfile(null);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  public static void writerfile(String[] args) throws Exception {
     FastVector atts;
     FastVector attsRel;
     FastVector attVals;
@@ -48,7 +58,7 @@ public class WriteFile {
     atts.addElement(new Attribute("att5", dataRel, 0));
 
     // 2. create Instances object
-    data = new Instances("MyRelation", atts, 0);
+    data = new Instances("MyTest", atts, 0);
 
     // 3. fill with data
     // first instance
